@@ -43,3 +43,57 @@ function buildingTree(inorder, inL, inR, preorder, preL, preR, map) {
 
   return root
 }
+
+
+//solutoin2 
+
+// function Tree(x) {
+//   this.value = x;
+//   this.left = null;
+//   this.right = null;
+// }
+
+// function restoreBinaryTree(inorder, preorder) {
+//   if (inorder.length === 0 || preorder.length === 0 || preorder.length !== inorder.length) {
+//     return null
+//   }
+
+//   let root
+//   let preIndex = 0
+
+//   function buildingTree(inorder, preorder, startIndex, endIndex) {
+
+//     if (startIndex > endIndex) {
+//       return null
+//     }
+
+//     var root = new Tree(preorder[preIndex])
+
+//     if (preIndex > preorder.length - 1) {
+//       return
+//     }
+
+
+//     var inIndex = inorder.indexOf(preorder[preIndex])
+//     preIndex += 1
+
+//     if (startIndex === endIndex) {
+//       return root
+//     }
+//     console.log(inIndex)
+//     root.left = buildingTree(inorder, preorder, startIndex, inIndex - 1)
+//     root.right = buildingTree(inorder, preorder, inIndex + 1, endIndex)
+
+//     return root
+//   }
+
+//   let final = buildingTree(inorder, preorder, 0, inorder.length - 1)
+//   return final
+
+// }
+
+
+// inorder = [4, 2, 1, 5, 3, 6]
+// preorder = [1, 2, 4, 3, 5, 6]
+
+// restoreBinaryTree(inorder, preorder)
