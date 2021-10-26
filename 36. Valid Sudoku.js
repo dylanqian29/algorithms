@@ -66,3 +66,50 @@ function check3by3(grid) {
   }
   return true
 }
+
+/**
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+ var isValidSudoku = function(board) {
+  let cols = [];
+  let rows = [];
+  let boxes = []
+  for(var i=0; i<9; i++) {
+      cols[i] = new Array(9).fill(0);
+      rows[i] = new Array(9).fill(0);
+      boxes[i] = new Array(9).fill(0);
+  }
+  let value, boxCol
+  for (let row=0; row< board.length; row++) {
+      for (let col=0; col<board.length; col++){
+          value = board[row][col]
+    if (value === "."){
+      continue;
+    }
+
+          // test columns
+          if(cols[row][value-1] === 1) {
+              return false
+          } else {
+              cols[row][value-1] =1
+          }
+
+          // test rows
+          if(rows[col][value-1] === 1) {
+              return false
+          } else {
+              rows[col][value-1] =1
+          }
+          
+          // test rows
+          boxCol = Math.floor(row/3) * 3 + Math.floor(col/3)
+          if(boxes[boxCol][value-1] === 1) {
+              return false
+          } else {
+              boxes[boxCol][value-1] =1
+          }
+      }
+  }
+  return true
+};
