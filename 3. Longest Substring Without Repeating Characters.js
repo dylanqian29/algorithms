@@ -1,33 +1,57 @@
+// O(n^2) Time
+// O(n) Space
 /**
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
-    let longest = "";
-    let possibleSolution = ""
-    let counter = 0;
-    let longestLength = 0
-    for (let i =0; i<s.length; i++){
-      if (possibleSolution.includes(s[i])){
-          let index = possibleSolution.indexOf(s[i])
-          possibleSolution = possibleSolution.slice(index+1) + s[i];
-          counter = possibleSolution.length;
-      } else if (possibleSolution.length === 0 ){
-        possibleSolution = possibleSolution.concat(s[i])
-        counter++
-        if (counter > longestLength){
-          longest = possibleSolution;
-          longestLength = counter;
-
-        }
+ var lengthOfLongestSubstring = function(s) {
+  let max = 0;
+  let left = 0;
+  let right = left
+  let set = new Set()
+  
+  while(right < s.length) {
+      if(set.has(s[right])){
+          left = left+1 
+          right = left
+          set = new Set()
       } else {
-        possibleSolution = possibleSolution.concat(s[i])
-        counter++
-        if (counter > longestLength){
-          longest = possibleSolution;
-          longestLength = counter;
-        }
+          set.add(s[right])
+          right+=1
+          max = Math.max(max, right-left)
       }
-    }
-    return longest.length 
+  }
+  
+  return max
 };
+
+// O(n) Time
+// O(n) Space
+// Sliding window
+/**
+ * @param {string} s
+ * @return {number}
+ */
+ var lengthOfLongestSubstring = function(s) {
+  let max = 0;
+  let left = 0;
+  let right = 0
+  let set = new Set()
+  
+  while(right<s.length){
+      if(!set.has(s[right])){
+          set.add(s[right])
+          right++
+      } else {
+          while(s[left] !== s[right]){
+              set.delete(s[left])
+              left++
+          }
+          left++
+          right++
+      }
+      max = Math.max(max, set.size)
+  }
+  return max
+};
+
