@@ -1,9 +1,9 @@
 /**
  * Initialize your data structure here.
  */
-var MyQueue = function() {
-    this.inStack  = [];
-    this.outStack = [];
+var MyQueue = function () {
+  this.inStack = [];
+  this.outStack = [];
 };
 
 /**
@@ -11,55 +11,53 @@ var MyQueue = function() {
  * @param {number} x
  * @return {void}
  */
-MyQueue.prototype.push = function(x) {
-    this.inStack.push(x)
+MyQueue.prototype.push = function (x) {
+  this.inStack.push(x);
 };
 
 /**
  * Removes the element from in front of queue and returns that element.
  * @return {number}
  */
-MyQueue.prototype.pop = function() {
-    if (this.outStack.length ===0){
-        while(this.inStack.length >0){
-            this.outStack.push(this.inStack.pop())
-        }
+MyQueue.prototype.pop = function () {
+  if (this.outStack.length === 0) {
+    while (this.inStack.length > 0) {
+      this.outStack.push(this.inStack.pop());
     }
-    if (this.outStack.length ===0){
-        return null
-    } else {
-        return this.outStack.pop()
-    }
-
+  }
+  if (this.outStack.length === 0) {
+    return null;
+  } else {
+    return this.outStack.pop();
+  }
 };
 
 /**
  * Get the front element.
  * @return {number}
  */
-MyQueue.prototype.peek = function() {
-    if (this.outStack.length ===0){
-        while(this.inStack.length >0){
-            this.outStack.push(this.inStack.pop())
-        }
+MyQueue.prototype.peek = function () {
+  if (this.outStack.length === 0) {
+    while (this.inStack.length > 0) {
+      this.outStack.push(this.inStack.pop());
     }
-    if (this.outStack.length ===0){
-        return null
-    } else {
-        return this.outStack[this.outStack.length-1]
-    }
-
+  }
+  if (this.outStack.length === 0) {
+    return null;
+  } else {
+    return this.outStack[this.outStack.length - 1];
+  }
 };
 
 /**
  * Returns whether the queue is empty.
  * @return {boolean}
  */
-MyQueue.prototype.empty = function() {
-    if (this.inStack.length ===0 && this.outStack.length ===0){
-        return true
-    }
-    return false
+MyQueue.prototype.empty = function () {
+  if (this.inStack.length === 0 && this.outStack.length === 0) {
+    return true;
+  }
+  return false;
 };
 
 /**

@@ -2,29 +2,29 @@
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function(s) {
+var isValid = function (s) {
   let pairs = {
-    "{":"}",
-    "(":")",
-    "[":"]",
-  }
-  let open = []
+    "{": "}",
+    "(": ")",
+    "[": "]",
+  };
+  let open = [];
   let valid = true;
-  let openP = Object.keys(pairs)
+  let openP = Object.keys(pairs);
 
-  for (var i = 0; i< s.length;i++){
-    if (openP.includes(s[i])){
-      open.push(s[i])
+  for (var i = 0; i < s.length; i++) {
+    if (openP.includes(s[i])) {
+      open.push(s[i]);
     } else {
-      if (pairs[open.pop()]===s[i]){
-        valid = valid
+      if (pairs[open.pop()] === s[i]) {
+        valid = valid;
       } else {
-        valid = false
+        valid = false;
       }
     }
   }
-  if (open.length !== 0){
-    valid = false
+  if (open.length !== 0) {
+    valid = false;
   }
-  return valid
+  return valid;
 };

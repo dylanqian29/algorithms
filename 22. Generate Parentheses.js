@@ -3,42 +3,39 @@
  * @return {string[]}
  */
 var generateParenthesis = function (n) {
-  let map = {}
-  map['('] = n
-  let results = []
+  let map = {};
+  map["("] = n;
+  let results = [];
 
   const helper = (result, map) => {
-
     if (result.length === n * 2) {
-      results.push(result.join(''))
+      results.push(result.join(""));
     }
-
 
     for (let key in map) {
-      result.push(key)
+      result.push(key);
       if (map[key] === 1) {
-        delete map[key]
+        delete map[key];
       } else {
-        map[key]--
+        map[key]--;
       }
 
-      if (key === '(') {
-        map[')'] ? map[')']++ : map[')'] = 1
+      if (key === "(") {
+        map[")"] ? map[")"]++ : (map[")"] = 1);
       }
 
-      helper(result.slice(), map)
-      map[key] ? map[key]++ : map[key] = 1
-      if (key === '(') {
-        if (map[')'] === 1) {
-          delete map[')']
+      helper(result.slice(), map);
+      map[key] ? map[key]++ : (map[key] = 1);
+      if (key === "(") {
+        if (map[")"] === 1) {
+          delete map[")"];
         } else {
-          map[')']--
+          map[")"]--;
         }
       }
-      result.pop()
-
+      result.pop();
     }
-  }
-  helper([], map)
-  return results
+  };
+  helper([], map);
+  return results;
 };

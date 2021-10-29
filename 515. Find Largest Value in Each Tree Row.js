@@ -10,36 +10,34 @@
  * @return {number[]}
  */
 var largestValues = function (t) {
-
   if (!t) {
-    return []
+    return [];
   }
 
-  let queue = [t]
-  let result = []
+  let queue = [t];
+  let result = [];
   let temp;
   let node;
   let len;
 
-
   while (queue.length > 0) {
-    temp = queue[0].val
-    len = queue.length
+    temp = queue[0].val;
+    len = queue.length;
 
     for (let i = 0; i < len; i++) {
-      node = queue[i]
-      temp = Math.max(temp, node.val)
+      node = queue[i];
+      temp = Math.max(temp, node.val);
       if (node.left) {
-        queue.push(node.left)
+        queue.push(node.left);
       }
       if (node.right) {
-        queue.push(node.right)
+        queue.push(node.right);
       }
     }
-    result.push(temp)
+    result.push(temp);
     for (let i = 0; i < len; i++) {
-      queue.shift()
+      queue.shift();
     }
   }
-  return result
-}
+  return result;
+};

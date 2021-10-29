@@ -11,60 +11,57 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function (a, b) {
+  let results = new ListNode(null);
+  let currentNode = results;
 
-  let results = new ListNode(null)
-  let currentNode = results
-
-  a = reverse(a)
-  b = reverse(b)
-  let sum = 0
-  let residual
+  a = reverse(a);
+  b = reverse(b);
+  let sum = 0;
+  let residual;
 
   while (a && b) {
-    residual = (a.val + b.val + sum) % 10
-    currentNode.next = new ListNode(residual)
-    sum = ((a.val + b.val + sum) - residual) / 10
+    residual = (a.val + b.val + sum) % 10;
+    currentNode.next = new ListNode(residual);
+    sum = (a.val + b.val + sum - residual) / 10;
 
-    a = a.next
-    b = b.next
-    currentNode = currentNode.next
+    a = a.next;
+    b = b.next;
+    currentNode = currentNode.next;
   }
 
   while (a) {
-    residual = (a.val + sum) % 10
-    currentNode.next = new ListNode(residual)
-    sum = ((a.val + sum) - residual) / 10
-    a = a.next
-    currentNode = currentNode.next
+    residual = (a.val + sum) % 10;
+    currentNode.next = new ListNode(residual);
+    sum = (a.val + sum - residual) / 10;
+    a = a.next;
+    currentNode = currentNode.next;
   }
 
   while (b) {
-    residual = (b.val + sum) % 10
-    currentNode.next = new ListNode(residual)
-    sum = ((b.val + sum) - residual) / 10
-    b = b.next
-    currentNode = currentNode.next
+    residual = (b.val + sum) % 10;
+    currentNode.next = new ListNode(residual);
+    sum = (b.val + sum - residual) / 10;
+    b = b.next;
+    currentNode = currentNode.next;
   }
 
   if (sum > 0) {
-    currentNode.next = new ListNode(sum)
+    currentNode.next = new ListNode(sum);
   }
 
-  return reverse(results.next)
-}
-
-
+  return reverse(results.next);
+};
 
 function reverse(l) {
-  let currentNode = l
-  let newHead = null
-  let temp
+  let currentNode = l;
+  let newHead = null;
+  let temp;
 
   while (currentNode) {
-    temp = currentNode.next
-    currentNode.next = newHead
-    newHead = currentNode
-    currentNode = temp
+    temp = currentNode.next;
+    currentNode.next = newHead;
+    newHead = currentNode;
+    currentNode = temp;
   }
-  return newHead
+  return newHead;
 }

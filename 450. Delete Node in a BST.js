@@ -13,21 +13,20 @@
 var deleteNode = function (root, key) {
   if (!root) return null;
   if (root.val > key) {
-    root.left = deleteNode(root.left, key)
+    root.left = deleteNode(root.left, key);
   } else if (root.val < key) {
-    root.right = deleteNode(root.right, key)
+    root.right = deleteNode(root.right, key);
   } else {
     if (!root.left || !root.right) {
-      root = root.left ? root.left : root.right
+      root = root.left ? root.left : root.right;
     } else {
-      let currentNode = root.left
+      let currentNode = root.left;
       while (currentNode.right) {
-        currentNode = currentNode.right
+        currentNode = currentNode.right;
       }
-      root.val = currentNode.val
-      root.left = deleteNode(root.left, currentNode.val)
+      root.val = currentNode.val;
+      root.left = deleteNode(root.left, currentNode.val);
     }
   }
   return root;
-
 };

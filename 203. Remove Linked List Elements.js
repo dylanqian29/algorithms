@@ -12,24 +12,24 @@
  */
 var removeElements = function (head, val) {
   if (!head) {
-    return []
+    return [];
   }
   while (head.val === val) {
-    head = head.next
+    head = head.next;
     if (!head) {
-      return []
+      return [];
     }
   }
   if (!head) {
-    return []
+    return [];
   }
-  let node = head
+  let node = head;
   while (node.next) {
     if (node.next.val === val) {
-      node.next = node.next.next
+      node.next = node.next.next;
     } else {
-      node = node.next
+      node = node.next;
     }
   }
-  return head
+  return head;
 };

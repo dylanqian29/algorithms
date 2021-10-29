@@ -1,39 +1,38 @@
 const mergeSort = (array) => {
   if (array.length === 0) {
-    return array
+    return array;
   }
   if (array.length === 1) {
-    return array
+    return array;
   }
-  let middle = Math.floor(array.length / 2)
+  let middle = Math.floor(array.length / 2);
 
-  let left = mergeSort(array.slice(0, middle))
-  let right = mergeSort(array.slice(middle))
+  let left = mergeSort(array.slice(0, middle));
+  let right = mergeSort(array.slice(middle));
 
-  return merge(left, right)
-
-}
+  return merge(left, right);
+};
 
 const merge = (left, right) => {
   let result = [];
   let leftIndex = 0;
-  let rightIndex = 0
+  let rightIndex = 0;
   while (leftIndex < left.length && rightIndex < right.length) {
     if (left[leftIndex] < right[rightIndex]) {
-      result.push(left[leftIndex])
-      leftIndex++
+      result.push(left[leftIndex]);
+      leftIndex++;
     } else {
-      result.push(right[rightIndex])
-      rightIndex++
+      result.push(right[rightIndex]);
+      rightIndex++;
     }
   }
 
   if (leftIndex !== left.length) {
-    result = result.concat(left.slice(leftIndex))
+    result = result.concat(left.slice(leftIndex));
   }
 
   if (rightIndex !== right.length) {
-    result = result.concat(right.slice(rightIndex))
+    result = result.concat(right.slice(rightIndex));
   }
-  return result
-}
+  return result;
+};

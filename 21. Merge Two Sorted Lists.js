@@ -1,30 +1,30 @@
 var l1 = {
-  val:1,
+  val: 1,
   next: {
-    val:2,
+    val: 2,
     next: {
-      val:4,
-      next: null
-    }
-  }
-}
+      val: 4,
+      next: null,
+    },
+  },
+};
 
 var l2 = {
-  val:1,
+  val: 1,
   next: {
-    val:3,
+    val: 3,
     next: {
-      val:4,
-      next: null
-    }
-  }
-}
+      val: 4,
+      next: null,
+    },
+  },
+};
 
 /**
  * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
  * }
  */
 /**
@@ -32,54 +32,45 @@ var l2 = {
  * @param {ListNode} l2
  * @return {ListNode}
  */
-
-//iterative approach
 var mergeTwoLists = function (l1, l2) {
-
-  var cn1 = l1;
-  var cn2 = l2;
-  var newNode;
-  var currentNewNode;
-
-
-  if (!cn1) {
-    return cn2
-  } else if (!cn2) {
-    return cn1
+  if (!l1) {
+    return l2;
   }
 
+  if (!l2) {
+    return l1;
+  }
 
-  if (cn1.val < cn2.val) {
-    newNode = cn1
-    currentNewNode = newNode
-    cn1 = cn1.next
+  if (l1.val < l2.val) {
+    head = l1;
+    l1 = l1.next;
   } else {
-    newNode = cn2
-    currentNewNode = newNode
-    cn2 = cn2.next
+    head = l2;
+    l2 = l2.next;
   }
+  let pointer = head;
 
-  while (cn1 && cn2) {
-    if (cn1.val < cn2.val) {
-      currentNewNode.next = cn1
-      currentNewNode = currentNewNode.next
-      cn1 = cn1.next
+  while (l1 && l2) {
+    if (l1.val < l2.val) {
+      pointer.next = l1;
+      l1 = l1.next;
+      pointer = pointer.next;
     } else {
-      currentNewNode.next = cn2
-      currentNewNode = currentNewNode.next
-      cn2 = cn2.next
+      pointer.next = l2;
+      l2 = l2.next;
+      pointer = pointer.next;
     }
-
-
   }
 
-  if (cn1) {
-    currentNewNode.next = cn1
-  } else if (cn2) {
-    currentNewNode.next = cn2
+  if (l1) {
+    pointer.next = l1;
   }
 
-  return newNode
+  if (l2) {
+    pointer.next = l2;
+  }
+
+  return head;
 };
 
 // recursive approach
@@ -100,4 +91,4 @@ var mergeTwoLists = function (l1, l2) {
     return l2;
   }
 };
-mergeTwoLists(l1,l2)
+mergeTwoLists(l1, l2);

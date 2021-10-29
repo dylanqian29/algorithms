@@ -4,17 +4,17 @@
  * @return {boolean}
  */
 var containsNearbyDuplicate = function (nums, k) {
-  let map = {}
+  let map = {};
   for (let i = 0; i < nums.length; i++) {
     if (map[nums[i]] === undefined) {
-      map[nums[i]] = i
+      map[nums[i]] = i;
     } else {
       if (i - map[nums[i]] <= k) {
-        return true
+        return true;
       } else {
-        map[nums[i]] = i
+        map[nums[i]] = i;
       }
     }
   }
-  return false
+  return false;
 };
