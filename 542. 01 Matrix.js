@@ -23,7 +23,6 @@ var updateMatrix = function (mat) {
     [1, 0],
     [-1, 0],
   ];
-  let next;
   while (q.length) {
     let [row, col] = q.shift();
     let currentValue = mat[row][col];
